@@ -149,7 +149,7 @@ services:
     networks:
       - default
       - net
-      - traefik-public
+      - ${DOCKER_HOST_PUBLIC_NETWORK}
     environment:
       - "ALERTMANAGER_URIS=default:http://alertmanager:9093"
     deploy:

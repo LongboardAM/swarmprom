@@ -23,7 +23,7 @@ pipeline {
 			steps {
 				sshagent(credentials : ['master-cred']) {
 					sh 'ssh ubuntu@${DOCKER_MAIN} "mkdir -p ~/${SERVICE}/deploy/${BUILD_NUMBER}/"'
-					sh 'scp ${PWD} ubuntu@${DOCKER_MAIN}:~/${SERVICE}/deploy/${BUILD_NUMBER}/'
+					sh 'scp ${PWD}/ ubuntu@${DOCKER_MAIN}:~/${SERVICE}/deploy/${BUILD_NUMBER}/'
 					sh 'ssh ubuntu@${DOCKER_MAIN} "cd ~/${SERVICE}/deploy/${BUILD_NUMBER} && docker stack deploy ${SERVICE} --compose-file production.yml --prune --with-registry-auth"'
 				}
 			}
